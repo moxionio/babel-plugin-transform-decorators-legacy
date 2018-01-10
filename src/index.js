@@ -288,7 +288,7 @@ export default function({types: t}){
                 const ref = node.id || path.scope.generateUidIdentifier("class");
 
                 path.replaceWith(t.variableDeclaration("let", [
-                  t.variableDeclarator(ref, t.toExpression(node))
+                  t.variableDeclarator(ref, t.callExpression(t.functionExpression(null, [], t.blockStatement([t.returnStatement(t.toExpression(node))])), []))
                 ]));
             },
             ClassExpression(path, state){
